@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CEO Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        section p {
+            color: #666;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        li strong {
+            color: #333;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Mailing System of GufferOverflow</h1>
+    <h2>Hello, {{ username }}!</h2>
+
+    <p>This is your dashboard.</p>
+
+    <section>
+        <h3>Inbox:</h3>
+    {% if inbox %}
+        <ul>
+        {% for message in inbox %}
+            <li>
+                <strong>From:</strong> {{ message['from'] }}<br>
+                <strong>Subject:</strong> {{ message['subject'] }}<br>
+                <strong>Message:</strong> 
+                <p>{{ message['content']|safe }}</p>
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No new messages.</p>
+    {% endif %}
+    </section>
+
+    <nav>
+        <a href="/profile">Profile</a> | <a href="/logout">Logout</a>
+    </nav>
+</body>
+</html>
